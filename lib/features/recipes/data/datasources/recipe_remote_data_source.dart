@@ -1,36 +1,32 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../models/recipe_model.dart';
+import 'package:recetas_app/core/error/exceptions.dart';
+import 'package:recetas_app/features/recipes/data/models/recipe_model.dart';
 
 abstract class RecipeRemoteDataSource {
-  Future<List<RecipeModel>> getAllRecipes(int page, int pageSize);
+  Future<List<RecipeModel>> getRecipesByFirstLetter(String letter);
 }
 
 class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {
   final http.Client client;
 
-  RecipeRemoteDataSourceImpl(this.client);
+  RecipeRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<RecipeModel>> getAllRecipes(int page, int pageSize) async {
-    final url = Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-    final response = await client.get(url);
+  Future<List<RecipeModel>> getRecipesByFirstLetter(String letter) async {
+    final response = await client.get(
+      Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?f=$letter'),
+      headers: {'Content-Type': 'application/json'},
+    );
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      final List meals = data['meals'];
-
-      // TheMealDB no tiene paginación real, así que simulamos paginado aquí:
-      final start = (page - 1) * pageSize;
-      final end = start + pageSize;
-      final pagedMeals = meals.sublist(
-        start < meals.length ? start : meals.length,
-        end < meals.length ? end : meals.length,
-      );
-
-      return pagedMeals.map((json) => RecipeModel.fromJson(json)).toList();
+      if (data['meals'] == null) return [];
+      return (data['meals'] as List)
+          .map((recipe) => RecipeModel.fromJson(recipe))
+          .toList();
     } else {
-      throw Exception('Failed to load recipes');
+      throw ServerException();
     }
   }
 }

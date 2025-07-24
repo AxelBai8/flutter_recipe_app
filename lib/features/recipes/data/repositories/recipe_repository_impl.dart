@@ -25,4 +25,14 @@ class RecipeRepositoryImpl implements RecipeRepository {
       return Left(ServerFailure());
     }
   }
+  
+  @override
+  Future<Either<Failure, RecipeDetail>> getRecipeDetail(String id) async {
+    try {
+      final remoteDetail = await remoteDataSource.getRecipeDetail(id);
+      return Right(remoteDetail);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }

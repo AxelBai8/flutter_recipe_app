@@ -8,3 +8,5 @@ abstract class RecipeListEvent extends Equatable {
 }
 
 class GetInitialRecipes extends RecipeListEvent {}
+
+class FetchMoreRecipes extends RecipeListEvent {} // <-- NUEVO

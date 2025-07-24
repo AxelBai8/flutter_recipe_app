@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Recetas App (no web security)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--web-browser-flag",
+                "--disable-web-security"
+            ]
+        }
+    ]
+}

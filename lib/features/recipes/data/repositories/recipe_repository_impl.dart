@@ -4,6 +4,8 @@ import 'package:recetas_app/core/error/failures.dart';
 import 'package:recetas_app/features/recipes/data/datasources/recipe_remote_data_source.dart';
 import 'package:recetas_app/features/recipes/domain/entities/recipe.dart';
 import 'package:recetas_app/features/recipes/domain/repositories/recipe_repository.dart';
+import 'package:recetas_app/features/recipes/domain/entities/recipe_detail.dart';
+
 
 class RecipeRepositoryImpl implements RecipeRepository {
   final RecipeRemoteDataSource remoteDataSource;

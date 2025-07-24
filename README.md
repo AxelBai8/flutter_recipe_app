@@ -2,7 +2,7 @@
 
 Una aplicación móvil construida con Flutter que permite a los usuarios explorar, buscar y ver los detalles de una gran variedad de recetas de cocina.
 
-## caracteristicas
+## Caracteristicas
 
 Listado Infinito: Pantalla principal con infinite scroll para explorar recetas.
 Vista de Detalle: Pantalla de detalle para cada receta con su imagen, lista de ingredientes e instrucciones.

@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // Comprueba si el usuario ha llegado al final de la lista
+ // Comprueba si el usuario ha llegado al final de la lista
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;

@@ -7,7 +7,7 @@ import 'package:recetas_app/features/recipes/data/models/recipe_detail_model.dar
 
 abstract class RecipeRemoteDataSource {
   Future<List<RecipeModel>> getRecipesByFirstLetter(String letter);
-    Future<RecipeDetailModel> getRecipeDetail(String id); 
+  Future<RecipeDetailModel> getRecipeDetail(String id); 
 }
 
 class RecipeRemoteDataSourceImpl implements RecipeRemoteDataSource {

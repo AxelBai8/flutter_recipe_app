@@ -32,8 +32,8 @@ Un editor de código como Visual Studio Code o Android Studio.
 
 Clona el repositorio:
 
-git clone https://github.com/tu-usuario/recetas_app.git
-cd recetas_app
+git clone git clone https://github.com/AxelBai8/flutter_recipe_app.git
+cd flutter_recipe_app
 
 Instala las dependencias:
 Ejecuta el siguiente comando en la terminal desde la raíz del proyecto.

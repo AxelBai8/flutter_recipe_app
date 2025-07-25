@@ -4,22 +4,24 @@ import 'package:recetas_app/features/recipes/data/datasources/recipe_remote_data
 import 'package:recetas_app/features/recipes/data/repositories/recipe_repository_impl.dart';
 import 'package:recetas_app/features/recipes/domain/repositories/recipe_repository.dart';
 import 'package:recetas_app/features/recipes/domain/usecases/get_recipes.dart';
-import 'package:recetas_app/features/recipes/presentation/bloc/recipe_list_bloc.dart';
 import 'package:recetas_app/features/recipes/domain/usecases/get_recipe_detail.dart';
+import 'package:recetas_app/features/recipes/domain/usecases/search_recipes.dart';
+import 'package:recetas_app/features/recipes/presentation/bloc/recipe_list_bloc.dart';
 import 'package:recetas_app/features/recipes/presentation/bloc/recipe_detail/recipe_detail_bloc.dart';
+import 'package:recetas_app/features/recipes/presentation/bloc/search/search_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Features - Recipes
-  // Bloc
-  sl.registerFactory(
-    () => RecipeListBloc(getRecipes: sl()),
-  );
+  // Blocs
+  sl.registerFactory(() => RecipeListBloc(getRecipes: sl()));
   sl.registerFactory(() => RecipeDetailBloc(getRecipeDetail: sl()));
+  sl.registerFactory(() => SearchBloc(searchRecipes: sl())); // Asegúrate de tener esta línea
+
   // Use cases
   sl.registerLazySingleton(() => GetRecipes(sl()));
   sl.registerLazySingleton(() => GetRecipeDetail(sl()));
+  sl.registerLazySingleton(() => SearchRecipes(sl())); // Asegúrate de tener esta línea
 
   // Repository
   sl.registerLazySingleton<RecipeRepository>(

@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recetas_app/features/recipes/presentation/bloc/recipe_list_bloc.dart';
 import 'package:recetas_app/features/recipes/presentation/bloc/recipe_list_event.dart';
 import 'package:recetas_app/features/recipes/presentation/bloc/recipe_list_state.dart';
+import 'package:recetas_app/features/recipes/presentation/pages/search_page.dart';
 import 'package:recetas_app/features/recipes/presentation/widgets/loading_recipe_card.dart';
 import 'package:recetas_app/features/recipes/presentation/widgets/recipe_card.dart';
-// ¡Añadiremos la página de búsqueda pronto!
-// import 'package:recetas_app/features/recipes/presentation/pages/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    // Disparamos el evento para obtener las recetas iniciales
     context.read<RecipeListBloc>().add(GetInitialRecipes());
   }
 
@@ -35,8 +33,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // TODO: Navegar a la página de búsqueda
-              print('Botón de búsqueda presionado');
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SearchPage()));
             },
           ),
         ],
@@ -97,12 +94,12 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
- // Comprueba si el usuario ha llegado al final de la lista
+  // Comprueba si el usuario ha llegado al final de la lista
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    // Dejamos un umbral de 200px para que cargue un poco antes de llegar al final
+    // Dejamos un umbral para que cargue un poco antes de llegar al final
     return currentScroll >= (maxScroll * 0.9);
   }
 }

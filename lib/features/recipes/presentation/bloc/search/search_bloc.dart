@@ -24,7 +24,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     },
     // Transformador para el debounce
     transformer: (events, mapper) {
-      return events.debounceTime(const Duration(milliseconds: 300)).asyncExpand(mapper);
+      return events.debounceTime(const Duration(milliseconds: 500)).asyncExpand(mapper);
     });
   }
 }

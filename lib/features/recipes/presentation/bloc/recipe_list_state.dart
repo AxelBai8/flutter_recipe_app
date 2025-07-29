@@ -14,11 +14,11 @@ class Loading extends RecipeListState {}
 
 class Loaded extends RecipeListState {
   final List<Recipe> recipes;
-  final bool hasReachedMax; // <-- NUEVO
+  final bool hasReachedMax; 
 
   const Loaded({
     required this.recipes,
-    required this.hasReachedMax, // <-- NUEVO
+    required this.hasReachedMax, 
   });
 
   // Creamos un método 'copyWith' para facilitar la actualización del estado

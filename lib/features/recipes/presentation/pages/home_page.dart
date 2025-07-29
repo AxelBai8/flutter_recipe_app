@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       body: BlocBuilder<RecipeListBloc, RecipeListState>(
         builder: (context, state) {
           if (state is Empty) {
-            return const Center(child: Text('Iniciando...'));
+            return const Center(child: Text('Cocinando algo...'));
           }
           if (state is Loading) {
             // Usamos nuestro widget de carga con Shimmer
